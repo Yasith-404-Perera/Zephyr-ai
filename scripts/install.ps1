@@ -51,19 +51,26 @@ if ($majorVersion -lt $ZephyrNodeMin) {
 }
 
 try {
-  $npmVersion = npm --version
+  $npmVersion = & "npm.cmd" --version
 } catch {
-  Write-Host "Error: npm is not installed." -ForegroundColor Red
-  exit 1
+  try {
+    $npmVersion = & "npm" --version
+  } catch {
+    Write-Host "Error: npm is not installed." -ForegroundColor Red
+    Write-Host "Download from https://nodejs.org"
+    exit 1
+  }
 }
 
 # ── Install ─────────────────────────────────────────────
 Write-Host "Installing Zephyr..." -ForegroundColor Cyan
 
+$npmCmd = if (Get-Command "npm.cmd" -ErrorAction SilentlyContinue) { "npm.cmd" } else { "npm" }
+
 if ($Version -eq "latest") {
-  npm install -g @yasith-perera/zephyr-ai
+  & $npmCmd install -g @yasith-perera/zephyr-ai
 } else {
-  npm install -g "@yasith-perera/zephyr-ai@${Version}"
+  & $npmCmd install -g "@yasith-perera/zephyr-ai@${Version}"
 }
 
 if ($LASTEXITCODE -ne 0) {

@@ -50,9 +50,9 @@ fi
 echo -e "${CYAN}Installing Zephyr...${NC}"
 
 if [ "$ZEPHYR_VERSION" = "latest" ]; then
-  npm install -g zephyr-ai
+  npm install -g @yasith-perera/zephyr-ai
 else
-  npm install -g "zephyr-ai@${ZEPHYR_VERSION}"
+  npm install -g "@yasith-perera/zephyr-ai@${ZEPHYR_VERSION}"
 fi
 
 echo ""

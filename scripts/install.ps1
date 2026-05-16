@@ -61,9 +61,9 @@ try {
 Write-Host "Installing Zephyr..." -ForegroundColor Cyan
 
 if ($Version -eq "latest") {
-  npm install -g zephyr-ai
+  npm install -g @yasith-perera/zephyr-ai
 } else {
-  npm install -g "zephyr-ai@${Version}"
+  npm install -g "@yasith-perera/zephyr-ai@${Version}"
 }
 
 if ($LASTEXITCODE -ne 0) {
